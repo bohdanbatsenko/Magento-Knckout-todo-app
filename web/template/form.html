@@ -15,12 +15,14 @@
                 <div class="control">
                     <input id="todo_add" type="text" data-bind="
                         textInput: textInput,
-                        attr: { placeholder: $t('Enter your action') }
+                        attr: { placeholder: $t('Enter your action') },
+                        hasFocus: inputFocused
                     ">
                 </div>
             </div>
         </fieldset>
-        <button class="action primary" data-role="closeBtn">
+        <!-- Review fix: you've set closeBtn as a trigger to close the modal and you've tried to close it from the submit method again -->
+        <button class="action primary">
             <span data-bind="i18n: 'Add'"></span>
         </button>
     </form>

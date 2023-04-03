@@ -17,13 +17,16 @@ define([
                title: 'Add task',
                //trigger: '[data-trigger=trigger]' - no need since data-bind="click: showModal" is used
                responsive: true,
-               buttons: []
+               buttons: [],
+               focus: null // Review fix: reset _setFocus method for the modal widget
            },
            template: 'Magento_Theme/form',
            textInput: '',
+           inputFocused: false,
            //textInput: ko.observable('default'), // then we don't need this.observe inside initObservable
            tracks: {
-               textInput: true // object that accepts variable
+               textInput: true, // object that accepts variable
+               inputFocused: true
            },
            //create ko observe var as a entire component
            modules: {
@@ -33,6 +36,7 @@ define([
 
        showModal() {
            this.modal.modal('openModal');
+           this.inputFocused = true;
        },
 
        refModal(modal) {
@@ -40,11 +44,13 @@ define([
        },
 
        submit() {
+           this.inputFocused = false;
+
            if (!this.textInput) return false;
 
+           this.modal.modal('closeModal');
            this.add();
            this.reset();
-           this.modal.modal('closeModal');
        },
 
        add() {

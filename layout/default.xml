@@ -7,12 +7,12 @@
                    template="Magento_Theme::list.phtml">
             </block>
 
-            <block name="custom.parent.block" template="Magento_Theme::parent.phtml" after="-">
-                <block name="custom.child.block1" template="Magento_Theme::child.phtml"/>
-                <container name="custom.child.container" htmlTag="div" htmlClass="custom-container">
-                    <block name="custom.child.block2" template="Magento_Theme::child.phtml"/>
-                </container>
-            </block>
+<!--            <block name="custom.parent.block" template="Magento_Theme::parent.phtml" after="-">-->
+<!--                <block name="custom.child.block1" template="Magento_Theme::child.phtml"/>-->
+<!--                <container name="custom.child.container" htmlTag="div" htmlClass="custom-container">-->
+<!--                    <block name="custom.child.block2" template="Magento_Theme::child.phtml"/>-->
+<!--                </container>-->
+<!--            </block>-->
         </referenceContainer>
     </body>
 </page>

@@ -5,30 +5,46 @@
 
     <div class=""
          style="display: none"
-         data-bind=" afterRender: refModal"
+         data-bind="afterRender: refModal"
     >
         <form action=""
               data-bind="submit: submit"
         >
-    <!-- ko if: editState -->
-            <input type="text"
-                   data-bind="
-                   textInput: textInput,
-                   hasFocus: editState,
-               "/>
-            <!-- /ko -->
-            <button class="action primary" data-role="closeBtn" data-bind="event: { click: onTextUpdated },">
-                <span data-bind="i18n: 'Add'"></span>
+            <!-- Review fix 1: why do you need the state checking if the input is visible only in the modal window -->
+            <!-- Review fix 2: don't add unnecessary commas, errors could happen during the JSON parsing -->
+            <!-- Review fix 3: use HTML layout for forms as expected in magento -->
+            <fieldset class="fieldset">
+                <div class="field">
+                    <label for="edit_task" class="label" data-bind="i18n: 'Edit task'"></label>
+                    <div class="control">
+                        <input id="edit_task"
+                                type="text"
+                               class="text-input"
+                               data-bind="
+                                   textInput: textInput,
+                                   hasFocus: editState
+                               "
+                        />
+                    </div>
+                </div>
+            </fieldset>
+            <!-- Review fix 1: the same about closeBtn -->
+            <!-- Review fix 2: just "click" bindings instead of event -> click -->
+            <!-- Review fix 3: don't add unnecessary commas, errors could happen during the JSON parsing -->
+            <!-- Review fix 4: why do you need the method onTextUpdated on click if you call this method in the submit method in JS -->
+            <button class="action primary">
+                <!-- Review fix: expected "Edit" button instead of "Add" -->
+                <span data-bind="i18n: 'Edit'"></span>
             </button>
         </form>
     </div>
-    <button class="action secondary" data-bind="click: showModal, function () { editState = true }">
+    <!-- Review fix: if you call the showModal method on click, why you change editState here instead of writing the logic in the method -->
+    <button class="action secondary" data-bind="click: showModal">
         <span data-bind="i18n: 'Edit'"></span>
     </button>
 
-    <!-- ko ifnot: editState -->
-    <span data-bind="text: textInput"/>
-    <!-- /ko -->
+    <!-- Review fix: since 2.4.4 when jquery-migrate.js has been updated you can't use self-closed tags where expected pair-closed tags -->
+    <span data-bind="text: textInput"></span>
     <button class="action secondary" data-bind="click: remove">
         <span data-bind="i18n: 'Remove'"></span>
     </button>

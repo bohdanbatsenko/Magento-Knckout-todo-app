@@ -1,10 +1,12 @@
-define(['uiElement',
+define([
+    'uiElement',
     'Magento_Ui/js/modal/modal',
     'Magento_Theme/js/action/item/status',
     'Magento_Theme/js/action/item/text',
-    'Magento_Theme/js/action/item/remove'
+    'Magento_Theme/js/action/item/remove',
+    'jquery'
 ], (
-    uiElement, modal, todoItemActionUpdateStatus,todoItemActionUpdateText, todoItemActionRemove
+    uiElement, modal, todoItemActionUpdateStatus,todoItemActionUpdateText, todoItemActionRemove, $
 ) => {
     'use strict';
 
@@ -18,7 +20,9 @@ define(['uiElement',
             modalOptions: {
                 type: 'popup',
                 title: 'Edit task',
-                buttons: []
+                responsive: true,
+                buttons: [],
+                focus: null // Review fix: reset _setFocus method for the modal widget
             },
             tracks: {
                 //'itemStatus editState textInput': true // also could be an option
@@ -32,11 +36,14 @@ define(['uiElement',
         },
 
         refModal(modal) {
-            this.modal = $(modal);
+            // Review fix 1: where's the jquery dependency in define?
+            // Review fix 2: you've just wrapper the DOM element to jQuery object. where's modal initialization?
+            this.modal = $(modal).modal(this.modalOptions);
         },
 
         showModal() {
             this.modal.modal('openModal');
+            this.editState = true;
         },
 
         submit() {

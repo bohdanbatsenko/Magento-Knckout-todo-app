@@ -1,10 +1,7 @@
-<!-- ko if: elems().length -->
-    <ul>
-        <!-- ko foreach: elems -->
-            <!-- ko template: getTemplate() --><!-- /ko -->
-        <!-- /ko -->
-    </ul>
-<!-- /ko -->
+<!-- Review fix: foreach renders nothing if the array is empty -->
+<ul data-bind="foreach: elems">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</ul>
 <!-- ko ifnot: elems().length -->
 <div class="messages">
     <div class="message warning">

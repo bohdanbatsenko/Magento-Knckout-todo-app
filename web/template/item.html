@@ -1,0 +1,36 @@
+<li>
+    <label for="">
+        <input type="checkbox" data-bind="checked: itemStatus">
+    </label>
+
+    <div class=""
+         style="display: none"
+         data-bind=" afterRender: refModal"
+    >
+        <form action=""
+              data-bind="submit: submit"
+        >
+    <!-- ko if: editState -->
+            <input type="text"
+                   data-bind="
+                   textInput: textInput,
+                   hasFocus: editState,
+               "/>
+            <!-- /ko -->
+            <button class="action primary" data-role="closeBtn" data-bind="event: { click: onTextUpdated },">
+                <span data-bind="i18n: 'Add'"></span>
+            </button>
+        </form>
+    </div>
+    <button class="action secondary" data-bind="click: showModal, function () { editState = true }">
+        <span data-bind="i18n: 'Edit'"></span>
+    </button>
+
+    <!-- ko ifnot: editState -->
+    <span data-bind="text: textInput"/>
+    <!-- /ko -->
+    <button class="action secondary" data-bind="click: remove">
+        <span data-bind="i18n: 'Remove'"></span>
+    </button>
+
+</li>

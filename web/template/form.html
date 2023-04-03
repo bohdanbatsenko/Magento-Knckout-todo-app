@@ -1,0 +1,27 @@
+<button
+    type="button"
+    class="js-custom-modal-trigger"
+    data-bind="click: showModal"
+>Add task </button>
+<div
+    style="display: none"
+    class="js-custom-modal"
+    data-bind="afterRender: refModal"
+>
+    <form data-bind="submit: submit">
+        <fieldset class="fieldset">
+            <div class="field">
+                <label for="todo_add" class="label" data-bind="i18n: 'Enter your action'"></label>
+                <div class="control">
+                    <input id="todo_add" type="text" data-bind="
+                        textInput: textInput,
+                        attr: { placeholder: $t('Enter your action') }
+                    ">
+                </div>
+            </div>
+        </fieldset>
+        <button class="action primary" data-role="closeBtn">
+            <span data-bind="i18n: 'Add'"></span>
+        </button>
+    </form>
+</div>

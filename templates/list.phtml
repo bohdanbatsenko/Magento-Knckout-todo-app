@@ -1,0 +1,26 @@
+
+<div class="js-todo" data-bind="scope: 'todo'">
+        <!-- ko template: getTemplate() --><!-- /ko -->
+</div>
+
+<script type="text/x-magento-init">
+    {
+        ".js-todo": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "todo": {
+                        "component": "uiCollection",
+                        "children": {
+                            "form": {
+                                "component": "Magento_Theme/js/view/form"
+                            },
+                            "list": {
+                                "component": "Magento_Theme/js/view/list"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+</script>
